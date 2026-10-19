@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import { userService } from '../services/api';
 import { Activity, TrendingDown, TrendingUp, Zap } from 'lucide-react';
+import '../styles/Onboarding.css';
 
 export default function Onboarding() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [aiSuggestion, setAiSuggestion] = useState(null);
   const { updateUser } = useAuth();
+  const { darkMode } = useTheme();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
@@ -107,10 +110,10 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-2xl mx-auto">
+    <main className={`onboarding-page ${darkMode ? 'is-dark' : ''}`}>
+      <div className="onboarding-layout">
         {/* Progress */}
-        <div className="mb-8 text-center">
+        <div className="onboarding-progress mb-8 text-center">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Setup Your Profile</h1>
           <p className="text-gray-600">Step {step} of 3</p>
           <div className="flex justify-center gap-2 mt-4">
@@ -125,7 +128,7 @@ export default function Onboarding() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-xl p-8">
+        <div className="onboarding-card bg-white rounded-lg shadow-xl p-8">
           {/* Step 1: Weight and Height */}
           {step === 1 && (
             <div className="space-y-6">
@@ -310,6 +313,6 @@ export default function Onboarding() {
           )}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

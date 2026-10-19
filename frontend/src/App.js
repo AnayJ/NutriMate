@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import MealEntry from './pages/MealEntry';
 import WeeklyReport from './pages/WeeklyReport';
 import './styles/App.css';
+import './styles/NutriTheme.css';
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();

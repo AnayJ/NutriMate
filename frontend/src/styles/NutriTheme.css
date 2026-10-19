@@ -1,0 +1,41 @@
+.meal-entry-page,
+.weekly-report-page,
+.onboarding-page {
+  --nutri-cream: #f8f3f0;
+  --nutri-peach: #ffe4d4;
+  --nutri-brown: #361c0d;
+  --nutri-taupe: #99897f;
+  --nutri-blue: #014baa;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: radial-gradient(
+    ellipse at center,
+    var(--nutri-peach) 0%,
+    #ccb6a9 58%,
+    var(--nutri-taupe) 100%
+  );
+  color: #000;
+}
+
+.meal-entry-page::before,
+.weekly-report-page::before,
+.onboarding-page::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: url('../../public/images/login-background.jpeg') center / cover no-repeat;
+  content: '';
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.meal-entry-layout,
+.weekly-report-layout,
+.onboarding-layout {
+  position: relative;
+  z-index: 1;
+  width: min(856px, 100%);
+  margin: 0 auto;
+  padding: 32px 24px;
+}

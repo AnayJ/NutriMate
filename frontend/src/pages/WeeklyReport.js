@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { dashboardService } from '../services/api';
 import { ArrowLeft } from 'lucide-react';
+import '../styles/WeeklyReport.css';
 
 export default function WeeklyReport() {
   const [report, setReport] = useState(null);
@@ -36,17 +37,17 @@ export default function WeeklyReport() {
   const summary = report.summary;
 
   return (
-    <div className={`min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 p-4`}>
-      <div className="max-w-3xl mx-auto">
+    <main className={`weekly-report-page ${darkMode ? 'is-dark' : ''}`}>
+      <div className="weekly-report-layout">
         <button
           onClick={() => navigate('/dashboard')}
-          className={`flex items-center gap-2 mb-6 ${darkMode ? 'text-indigo-300 hover:text-indigo-200' : 'text-indigo-600 hover:text-indigo-700'}`}
+          className="report-back flex items-center gap-2 mb-6"
         >
           <ArrowLeft size={20} />
           Back to Dashboard
         </button>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+        <div className="weekly-report-card bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
           <h1 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Weekly Health Report</h1>
 
           {/* Summary Stats */}
@@ -127,6 +128,6 @@ export default function WeeklyReport() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

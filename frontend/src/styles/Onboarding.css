@@ -1,0 +1,127 @@
+.onboarding-page .onboarding-progress h1,
+.onboarding-page .onboarding-card h2 {
+  color: #000;
+}
+
+.onboarding-page .onboarding-progress > p {
+  color: #4a3427;
+}
+
+.onboarding-progress [class*='h-2 w-12'] {
+  height: 4px;
+  border-radius: 999px;
+}
+
+.onboarding-progress .bg-indigo-600,
+.onboarding-card .bg-indigo-600 {
+  background-color: #014baa;
+}
+
+.onboarding-progress .bg-gray-300 {
+  background-color: #c4b5ab;
+}
+
+.onboarding-card {
+  border: 1px solid rgb(54 28 13 / 8%);
+  border-radius: 20px;
+  background: #f8f3f0;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+
+.onboarding-card h2 {
+  font-size: 25px;
+}
+
+.onboarding-card label,
+.onboarding-card .text-gray-700 {
+  color: #2b211c;
+}
+
+.onboarding-card input {
+  border-color: #99897f;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 85%);
+}
+
+.onboarding-card input:focus {
+  border-color: #014baa;
+  outline: 2px solid rgb(1 75 170 / 22%);
+  outline-offset: 1px;
+}
+
+.onboarding-card button.bg-indigo-600,
+.onboarding-card button.bg-blue-500 {
+  border-radius: 14px;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 20%);
+}
+
+.onboarding-card button.bg-indigo-600:hover {
+  background-color: #003f91;
+}
+
+.onboarding-card button.bg-blue-500 {
+  background-color: #361c0d;
+}
+
+.onboarding-card button.bg-blue-500:hover {
+  background-color: #4a2c1b;
+}
+
+.onboarding-card button.border-indigo-600 {
+  border-color: #014baa;
+  color: #014baa;
+}
+
+.onboarding-card button.border-indigo-600.bg-indigo-50 {
+  background: #e7eef7;
+}
+
+.onboarding-card .bg-blue-50,
+.onboarding-card .bg-gray-50 {
+  border-radius: 14px;
+  background-color: #f1e5dd;
+}
+
+.onboarding-card .bg-green-50 {
+  border-color: #b5cbbd;
+  border-radius: 14px;
+  background-color: #eaf1ec;
+}
+
+.onboarding-card .text-indigo-600 {
+  color: #014baa;
+}
+
+.is-dark.onboarding-page {
+  background: radial-gradient(ellipse at center, #503b30 0%, #30231c 75%);
+  color: #f8f3f0;
+}
+
+.is-dark .onboarding-progress h1,
+.is-dark .onboarding-progress > p {
+  color: #f8f3f0;
+}
+
+.is-dark .onboarding-card {
+  border-color: #665042;
+  background: #40291d;
+  color: #f8f3f0;
+}
+
+.is-dark .onboarding-card h2,
+.is-dark .onboarding-card label,
+.is-dark .onboarding-card .text-gray-700,
+.is-dark .onboarding-card .text-gray-800 {
+  color: #f8f3f0;
+}
+
+.is-dark .onboarding-card input {
+  border-color: #786457;
+  background: #2a1b13;
+  color: #f8f3f0;
+}
+
+.is-dark .onboarding-card .bg-blue-50,
+.is-dark .onboarding-card .bg-gray-50 {
+  background: #33231a;
+}

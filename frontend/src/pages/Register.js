@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Mail, Lock, User } from 'lucide-react';
+import '../styles/Register.css';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -15,22 +15,21 @@ export default function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setError('');
-    setLoading(true);
 
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
-      setLoading(false);
       return;
     }
 
+    setLoading(true);
     try {
       await register(formData.name, formData.email, formData.password);
       navigate('/onboarding');
@@ -42,108 +41,86 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Fitness Tracker</h1>
-          <p className="text-gray-600 mt-2">Start your fitness journey today</p>
-        </div>
+    <main className="register-page">
+      <img
+        className="register-backdrop-art"
+        src="/images/login-background.jpeg"
+        alt=""
+        aria-hidden="true"
+      />
+      <section className="register-card" aria-labelledby="register-title">
+        <h1 id="register-title">Lets Get You Onboarded</h1>
 
         {error && (
-          <div className="mb-4 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+          <div className="register-error" role="alert">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Full Name
-            </label>
-            <div className="relative">
-              <User className="absolute left-3 top-3 text-gray-400" size={20} />
+        <form className="register-form" onSubmit={handleSubmit}>
+          <div className="register-fields">
+            <div className="register-field">
+              <label htmlFor="register-name">Name</label>
               <input
+                id="register-name"
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="John Doe"
+                autoComplete="name"
                 required
               />
             </div>
-          </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-3 text-gray-400" size={20} />
+            <div className="register-field">
+              <label htmlFor="register-email">E-mail</label>
               <input
+                id="register-email"
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="john@example.com"
+                autoComplete="email"
                 required
               />
             </div>
-          </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 text-gray-400" size={20} />
+            <div className="register-field register-password-field">
+              <label htmlFor="register-password">Create Password</label>
               <input
+                id="register-password"
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="••••••••"
+                autoComplete="new-password"
                 required
               />
             </div>
-          </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Confirm Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 text-gray-400" size={20} />
+            <div className="register-field register-password-field">
+              <label htmlFor="register-confirm-password">Confirm Password</label>
               <input
+                id="register-confirm-password"
                 type="password"
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="••••••••"
+                autoComplete="new-password"
                 required
               />
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition disabled:opacity-50"
-          >
-            {loading ? 'Registering...' : 'Create Account'}
+          <button className="register-submit" type="submit" disabled={loading}>
+            {loading ? 'Creating account...' : 'Create Account'}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-gray-600">
-          Already have an account?{' '}
-          <Link to="/login" className="text-indigo-600 hover:text-indigo-700 font-semibold">
-            Login here
-          </Link>
+        <p className="register-login">
+          Already have an account? <Link to="/login">Login here</Link>
         </p>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Mail, Lock } from 'lucide-react';
+import '../styles/Login.css';
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -13,13 +13,13 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setError('');
     setLoading(true);
 
@@ -38,72 +38,68 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Fitness Tracker</h1>
-          <p className="text-gray-600 mt-2">Welcome back! Log in to continue.</p>
-        </div>
+    <main className="login-page">
+      <img
+        className="login-backdrop-art"
+        src="/images/login-background.jpeg"
+        alt=""
+        aria-hidden="true"
+      />
+      <section className="login-card" aria-labelledby="login-title">
+        <header className="login-brand">
+          <h1 id="login-title">
+            Nutri<span>Mate</span>
+          </h1>
+          <p>Your Fitness Companion</p>
+        </header>
 
-        {error && (
-          <div className="mb-4 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-3 text-gray-400" size={20} />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="john@example.com"
-                required
-              />
+        <form className="login-form" onSubmit={handleSubmit}>
+          {error && (
+            <div className="login-error" role="alert">
+              {error}
             </div>
+          )}
+
+          <div className="login-field login-email-field">
+            <label htmlFor="login-email">Email</label>
+            <input
+              id="login-email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              autoComplete="email"
+              placeholder="eg. abc@outlook.com"
+              required
+            />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 text-gray-400" size={20} />
+          <div className="login-field login-password-field">
+            <label htmlFor="login-password">Password</label>
+            <div className="login-password-input">
+              <img src="/images/login-lock.svg" alt="" aria-hidden="true" />
               <input
+                id="login-password"
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="••••••••"
+                autoComplete="current-password"
+                placeholder="•••••••••••"
                 required
               />
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition disabled:opacity-50"
-          >
+          <button className="login-submit" type="submit" disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-gray-600">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-indigo-600 hover:text-indigo-700 font-semibold">
-            Register here
-          </Link>
+        <p className="login-signup">
+          <Link to="/register">Click Here to Sign-Up</Link>
         </p>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

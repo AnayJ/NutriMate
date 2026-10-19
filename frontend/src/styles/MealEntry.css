@@ -1,0 +1,131 @@
+.meal-entry-back {
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--nutri-blue);
+  cursor: pointer;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.meal-entry-back:hover {
+  color: #003f91;
+}
+
+.meal-entry-card {
+  border: 0;
+  border-radius: 20px;
+  background: var(--nutri-cream);
+  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+
+.meal-entry-card h1 {
+  color: #000;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.meal-entry-card label {
+  color: #000;
+}
+
+.meal-entry-card input,
+.meal-entry-card textarea {
+  border-color: #8e8078;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 85%);
+  color: #111;
+}
+
+.meal-entry-card input:focus,
+.meal-entry-card textarea:focus {
+  border-color: var(--nutri-blue);
+  outline: 2px solid rgb(1 75 170 / 22%);
+  outline-offset: 1px;
+}
+
+.meal-entry-card .meal-entry-item {
+  border-color: #d4c2b6;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 50%);
+}
+
+.meal-entry-card .meal-entry-totals {
+  border: 1px solid #e3d2c7;
+  border-radius: 16px;
+  background: #f1e5dd;
+}
+
+.meal-entry-card .bg-indigo-600,
+.meal-entry-card .meal-entry-save {
+  border-color: #000;
+  border-radius: 14px;
+  background: var(--nutri-blue);
+  box-shadow: 0 4px 4px rgb(0 0 0 / 20%);
+}
+
+.meal-entry-card .bg-indigo-600:hover,
+.meal-entry-card .meal-entry-save:hover:not(:disabled) {
+  background: #003f91;
+}
+
+.meal-entry-card .meal-entry-add {
+  border-color: var(--nutri-blue);
+  border-radius: 14px;
+  color: var(--nutri-blue);
+}
+
+.meal-entry-card .meal-entry-add:hover {
+  background: #e5edf7;
+}
+
+.is-dark.meal-entry-page {
+  background: radial-gradient(ellipse at center, #503b30 0%, #30231c 75%);
+  color: #f8f3f0;
+}
+
+.meal-entry-page.is-dark .meal-entry-card {
+  background: #40291d;
+}
+
+.meal-entry-page.is-dark .meal-entry-card h1,
+.meal-entry-page.is-dark .meal-entry-card label,
+.meal-entry-page.is-dark .meal-entry-card .font-semibold {
+  color: #f8f3f0;
+}
+
+.meal-entry-page.is-dark .meal-entry-card input,
+.meal-entry-page.is-dark .meal-entry-card textarea {
+  border-color: #786457;
+  background: #2a1b13;
+  color: #f8f3f0;
+}
+
+.meal-entry-page.is-dark .meal-entry-card .meal-entry-item,
+.meal-entry-page.is-dark .meal-entry-card .meal-entry-totals {
+  border-color: #665042;
+  background: #33231a;
+}
+
+.meal-entry-page.is-dark .meal-entry-card .meal-entry-add {
+  color: #ffe4d4;
+}
+
+@media (max-width: 600px) {
+  .meal-entry-layout {
+    padding: 20px 16px;
+  }
+
+  .meal-entry-card {
+    padding: 20px;
+  }
+
+  .meal-entry-card h1 {
+    font-size: 25px;
+  }
+
+  .meal-entry-card .grid-cols-2 {
+    gap: 10px;
+  }
+}

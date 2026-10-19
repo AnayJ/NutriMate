@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { mealService } from '../services/api';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
+import '../styles/MealEntry.css';
 
 const numberInputStyle = `
   input[type="number"]::-webkit-outer-spin-button,
@@ -80,23 +81,23 @@ export default function MealEntry() {
   const totalFats = meals.reduce((sum, meal) => sum + (parseFloat(meal.fats) || 0), 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 p-4">
+    <main className={`meal-entry-page ${darkMode ? 'is-dark' : ''}`}>
       <style>{numberInputStyle}</style>
-      <div className="max-w-2xl mx-auto">
+      <div className="meal-entry-layout">
         <button
           onClick={() => navigate('/dashboard')}
-          className={`flex items-center gap-2 mb-6 ${darkMode ? 'text-indigo-300 hover:text-indigo-200' : 'text-indigo-600 hover:text-indigo-700'}`}
+          className="meal-entry-back flex items-center gap-2 mb-6"
         >
           <ArrowLeft size={20} />
           Back to Dashboard
         </button>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+        <div className="meal-entry-card bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
           <h1 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Log Your Meals</h1>
 
           <form onSubmit={handleSubmit}>
             {meals.map((meal, index) => (
-              <div key={meal.id} className="mb-6 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900">
+              <div key={meal.id} className="meal-entry-item mb-6 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Meal {index + 1}</h3>
                   {meals.length > 1 && (
@@ -228,7 +229,7 @@ export default function MealEntry() {
             ))}
 
             {/* Totals */}
-            <div className="p-4 bg-gray-100 dark:bg-gray-900 rounded-lg mb-6">
+            <div className="meal-entry-totals p-4 bg-gray-100 dark:bg-gray-900 rounded-lg mb-6">
               <h3 className={`font-semibold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Daily Total</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
@@ -262,7 +263,7 @@ export default function MealEntry() {
               <button
                 type="button"
                 onClick={addMealForm}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition font-semibold"
+                className="meal-entry-add flex-1 flex items-center justify-center gap-2 px-4 py-2 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition font-semibold"
               >
                 <Plus size={20} />
                 Add Another Meal
@@ -270,7 +271,7 @@ export default function MealEntry() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-semibold disabled:opacity-50"
+                className="meal-entry-save flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-semibold disabled:opacity-50"
               >
                 {loading ? 'Saving...' : 'Save Meals'}
               </button>
@@ -278,6 +279,6 @@ export default function MealEntry() {
           </form>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
